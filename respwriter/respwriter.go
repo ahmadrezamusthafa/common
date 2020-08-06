@@ -30,14 +30,14 @@ func (m *Module) SuccessWriter(writer http.ResponseWriter, status int, data inte
 }
 
 func (m *Module) ErrorWriter(writer http.ResponseWriter, status int, lang string, err error) {
-	militaryError := errors.ParseError(lang, err)
+	engineError := errors.ParseError(lang, err)
 	response := Response{
 		ProcessTime: time.Since(m.start).Seconds(),
 		IsSuccess:   false,
 		Error: ErrorResponse{
-			Code:    militaryError.Code,
-			Message: militaryError.Detail,
-			Traces:  militaryError.Traces,
+			Code:    engineError.Code,
+			Message: engineError.Detail,
+			Traces:  engineError.Traces,
 		},
 	}
 	jsonByte, err := jsoniter.Marshal(response)
