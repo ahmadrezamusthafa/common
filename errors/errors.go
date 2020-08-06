@@ -109,11 +109,11 @@ func Match(firstErr, secondErr error) bool {
 	}
 	var firstCode, secondCode int
 	if firstErr != nil && secondErr != nil {
-		err1, ok := firstErr.(*Error)
+		err1, ok := firstErr.(Error)
 		if ok {
 			firstCode = err1.Code
 		}
-		err2, ok := secondErr.(*Error)
+		err2, ok := secondErr.(Error)
 		if ok {
 			secondCode = err2.Code
 		}
