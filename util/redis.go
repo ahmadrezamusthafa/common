@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/hex"
+	jsoniter "github.com/json-iterator/go"
 	"sort"
 	"strings"
 )
@@ -27,6 +28,11 @@ func GetRedisKey(prefix string, param map[string]interface{}) string {
 		buffer.WriteString(val)
 	}
 	return hashRedisKey(buffer.String())
+}
+
+func GetRedisObjKey(prefix string, param interface{}) string {
+	objectStr, _ := jsoniter.MarshalToString(param)
+	return prefix + ":" + hashRedisKey(objectStr)
 }
 
 func hashRedisKey(key string) string {

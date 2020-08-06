@@ -42,3 +42,45 @@ func TestGetRedisKey(t *testing.T) {
 		})
 	}
 }
+
+func TestGetRedisObjKey(t *testing.T) {
+	type args struct {
+		prefix string
+		param  interface{}
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "Normal case",
+			args: args{
+				prefix: "military",
+				param: map[string]interface{}{
+					"id":   1212,
+					"name": "reza",
+				},
+			},
+			want: "military:f1cc8d38585e6066559266e9b601bc64",
+		},
+		{
+			name: "Normal case",
+			args: args{
+				prefix: "military",
+				param: map[string]interface{}{
+					"name": "reza",
+					"id":   1212,
+				},
+			},
+			want: "military:93b5aad38d82963d41a14eea552188db",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := GetRedisObjKey(tt.args.prefix, tt.args.param); got != tt.want {
+				t.Errorf("GetRedisObjKey() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
