@@ -7,7 +7,7 @@ type Module struct {
 }
 
 type Response struct {
-	ProcessTime float64     `json:"processTime,omitempty"`
+	ProcessTime float64     `json:"processTime"`
 	IsSuccess   bool        `json:"success"`
 	Data        interface{} `json:"data"`
 	Error       interface{} `json:"error"`
