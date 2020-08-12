@@ -125,7 +125,7 @@ func Match(firstErr, secondErr error) bool {
 }
 
 var (
-	GeneralError                error = Error{Code: 100002, Title: "General Error", DetailEn: "Something went wrong please try again", DetailId: "Mohon maaf permohonan Anda tidak dapat diproses, mohon coba kembali", HttpStatus: http.StatusBadRequest}
+	GeneralError                error = Error{Code: 100001, Title: "General Error", DetailEn: "Something went wrong please try again", DetailId: "Mohon maaf permohonan Anda tidak dapat diproses, mohon coba kembali", HttpStatus: http.StatusBadRequest}
 	MarshalError                error = Error{Code: 200001, Title: "Library Error", DetailEn: "Cannot marshall data", HttpStatus: http.StatusBadRequest}
 	UnmarshalError              error = Error{Code: 200002, Title: "Library Error", DetailEn: "Cannot unmarshall data", HttpStatus: http.StatusBadRequest}
 	ReadDataError               error = Error{Code: 200003, Title: "Library Error", DetailEn: "Cannot read data", HttpStatus: http.StatusNotFound}
@@ -135,4 +135,5 @@ var (
 	InvalidPasswordError        error = Error{Code: 400002, Title: "Request Error", DetailEn: "Invalid user password", HttpStatus: http.StatusBadRequest}
 	InvalidRequestParamError    error = Error{Code: 400003, Title: "Request Error", DetailEn: "Invalid request parameter", HttpStatus: http.StatusPreconditionFailed}
 	IncompleteRequestParamError error = Error{Code: 400004, Title: "Request Error", DetailEn: "Incomplete request parameter", HttpStatus: http.StatusPreconditionFailed}
+	UnauthorizedError           error = Error{Code: 500001, Title: "Http Error", DetailEn: "Unauthorized", HttpStatus: http.StatusUnauthorized}
 )
