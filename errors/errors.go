@@ -81,7 +81,7 @@ func GetHttpStatus(err interface{}) int {
 func ParseError(lang string, err error) Error {
 	mainErr, ok := err.(Error)
 	if !ok {
-		return Error{}
+		mainErr = GeneralError.(Error)
 	}
 	if lang == "en" {
 		mainErr.Detail = mainErr.DetailEn
