@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime/debug"
 	"strings"
 )
 
@@ -86,6 +87,7 @@ func Err(format string, v ...interface{}) {
 func Panic(format string, v ...interface{}) {
 	if getActiveLogLevel() >= logLevel[LogLevelPanic] {
 		message := []interface{}{fmt.Sprintf("PANIC: "+format, v...)}
+		message = append(message, "\n", string(debug.Stack()))
 		log.Print(message...)
 	}
 }
