@@ -27,7 +27,7 @@ func (c *CommonHandlers) RecoverHandler(next http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
-				logger.Err("Panic: %v", err)
+				logger.Panic("Panic: %v", err)
 				respWriter := respwriter.New()
 				respWriter.ErrorWriter(w, http.StatusInternalServerError, "en", fmt.Errorf("%v", err))
 			}
